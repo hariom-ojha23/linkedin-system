@@ -11,6 +11,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -72,12 +74,13 @@ public class AuthService {
 
         Map<String, Object> userCreatedEvent = new HashMap<>();
 
-        userCreatedEvent.put("userId", savedUser.getId());
+        userCreatedEvent.put("id", savedUser.getId());
         userCreatedEvent.put("email", savedUser.getEmail());
         userCreatedEvent.put("firstName", savedUser.getFirstName());
         userCreatedEvent.put("lastName", savedUser.getLastName());
         userCreatedEvent.put("headline", savedUser.getHeadLine());
         userCreatedEvent.put("location", savedUser.getLocation());
+        userCreatedEvent.put("skills", List.of());
 
         kafkaTemplate.send(USER_CREATED_TOPIC, savedUser.getId(), userCreatedEvent);
 

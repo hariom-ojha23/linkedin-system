@@ -145,7 +145,7 @@ public class UserService {
 
         Map<String, Object> userUpdatedEvent = new HashMap<>();
 
-        userUpdatedEvent.put("userId", updatedUser.getId());
+        userUpdatedEvent.put("id", updatedUser.getId());
         userUpdatedEvent.put("email", updatedUser.getEmail());
         userUpdatedEvent.put("firstName", updatedUser.getFirstName());
         userUpdatedEvent.put("lastName", updatedUser.getLastName());

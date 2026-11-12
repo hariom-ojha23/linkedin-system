@@ -68,7 +68,7 @@ public class PostService {
 
         Map<String, Object> postCreatedEvent = new HashMap<>();
 
-        postCreatedEvent.put("postId", savedPost.getId());
+        postCreatedEvent.put("id", savedPost.getId());
         postCreatedEvent.put("authorId", savedPost.getAuthorId());
         postCreatedEvent.put("content", savedPost.getContent());
         postCreatedEvent.put("imageUrl", savedPost.getImageUrl());
@@ -134,7 +134,7 @@ public class PostService {
             // Publish post liked event to Kafka
 
             Map<String, Object> postLikedEvent = new HashMap<>();
-            postLikedEvent.put("postId", postId);
+            postLikedEvent.put("id", postId);
             postLikedEvent.put("userId", userId);
             postLikedEvent.put("authorId", post.getAuthorId());
 
@@ -164,7 +164,7 @@ public class PostService {
         // Publish post.commented event to Kafka
 
         Map<String, Object> postCommentedEvent = new HashMap<>();
-        postCommentedEvent.put("postId", postId);
+        postCommentedEvent.put("id", postId);
         postCommentedEvent.put("authorId", authorId);
         postCommentedEvent.put("commentId", savedComment.getId());
         postCommentedEvent.put("postAuthorId", post.getAuthorId());
