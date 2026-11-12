@@ -97,7 +97,7 @@ public class UserController {
     /**
      * Get all connection of a user
      */
-    @GetMapping("/{userId}/connections")
+    @GetMapping("/connections")
     public ResponseEntity<List<UserResponse>> getAllConnection(
             @RequestHeader("X-User-Id") Long userId
     ) {
